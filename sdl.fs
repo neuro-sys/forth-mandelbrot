@@ -6,7 +6,7 @@ s" SDL" add-lib
 \c #include <SDL/SDL.h>
 
 c-function sdl-init             SDL_Init            n -- n
-c-function sdl-set-video-mode	SDL_SetVideoMode	n n n n -- a
+c-function sdl-set-video-mode   SDL_SetVideoMode    n n n n -- a
 c-function sdl-flip             SDL_Flip            a -- n
 c-function sdl-quit             SDL_Quit            -- void
 c-function sdl-delay            SDL_Delay           n -- void
@@ -16,27 +16,27 @@ end-c-library
 
 vocabulary sdl.fs also sdl.fs definitions
 
-$00000000	constant SDL_SWSURFACE
+$00000000   constant SDL_SWSURFACE
 $80000000   constant SDL_FULLSCREEN
-$00000020	constant SDL_INIT_VIDEO
-$0000FFFF	constant SDL_INIT_EVERYTHING
-$00000002	constant SDL_KEYDOWN
+$00000020   constant SDL_INIT_VIDEO
+$0000FFFF   constant SDL_INIT_EVERYTHING
+$00000002   constant SDL_KEYDOWN
 
 32          constant sdl-pixels-offset
 24          constant sdl-event-type-size
 
-1024 constant #width
-768 constant #height
+1024        constant #width
+748         constant #height
 
-#width 4 * constant #stride
+#width 4 *  constant #stride
 
-variable color 3 cells allot
-variable surface
-variable pixels
+variable    color   3 cells allot
+variable    surface
+variable    pixels
 
-variable sdl-event sdl-event-type-size allot
+variable    sdl-event sdl-event-type-size allot
 
-: wait-key 
+: wait-key
   begin
     sdl-event sdl-poll-event
     sdl-event c@ SDL_KEYDOWN =
