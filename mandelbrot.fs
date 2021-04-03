@@ -47,9 +47,7 @@ variable x1
 variable y1
 : co* ( x0 y0 x1 y1 -- x2 y2 ) \ = (x0 + y0i)(x1 + y1i)
                                \ = (x0x1 - y0y1) + (x0y1 + y0x1)i
-
   y1 ! x1 ! y0 ! x0 !
-
   x0 @ x1 @ fp*
   y0 @ y1 @ fp* -
   x0 @ y1 @ fp*
@@ -81,17 +79,12 @@ variable y
   y @ i>fp y-scale c co!
   0 0 z co!
   0 iteration-count !
-
   max-iter 0 do
     z co@ 2dup co*
     c co@ co+
     z co!           ( z = z^2 + c )
     iteration-count @ 1+ iteration-count !
-
-    z co@ co-abs^2 4 i>fp > if
-      colorize
-      leave
-    then
+    z co@ co-abs^2 4 i>fp > if colorize leave then
   loop
 ;
 
